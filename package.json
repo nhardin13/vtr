@@ -1,0 +1,23 @@
+{
+  "name": "vtr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhardin13/vtr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhardin13/vtr/issues"
+  },
+  "homepage": "https://github.com/nhardin13/vtr#readme",
+  "description": "",
+  "devDependencies": {
+    "@filipecarneiro/hugo-bootstrap-theme": "^1.0.50"
+  }
+}
