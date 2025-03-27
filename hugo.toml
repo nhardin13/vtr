@@ -92,7 +92,7 @@ pluralizelisttitles = false
 
     # Google Maps widget: If `googleMapsApiKey` is not set, no key will be passed to Google (which likely results in a broken map widget).
     enableGoogleMaps = true
-    googleMapsApiKey = "AIzaSyDBm-hcXmsIKfOovuu0sA_Ed0KpexYdGbw"
+    googleMapsApiKey = "{{ .Env.GOOGLE_MAPS_API_KEY }}"  # Use environment variable
 
     latitude = "39°35'53.2 N"
     longitude = "84°01'51.1 W"
@@ -132,7 +132,7 @@ pluralizelisttitles = false
     #   6. enter site key into `googleRecaptchaKey` to enable a recaptcha widget in your page.
     #
     enableRecaptchaInContactForm = true
-    googleRecaptchaKey = "6LcRyAErAAAAAMcwGaNJsyDgA_WXXh3h80Oo0gA7"
+    googleRecaptchaKey = "{{ .Env.GOOGLE_RECAPTCHA_KEY }}"  # Use environment variable
 
     about_us = "<p>At Valley Top Repair, we take pride in being your trusted local partner for repair and maintenance services. Specializing in lawn and garden equipment, small engines, and light vehicle repair, we’re here to keep your equipment, machines, and vehicles running smoothly.</p>"
     copyright = "Copyright (c) 2025, Valley Top Repair LLC; all rights reserved."

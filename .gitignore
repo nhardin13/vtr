@@ -3,3 +3,4 @@ node_modules
 resources
 themes
 .hugo_build.lock
+secrets.toml
