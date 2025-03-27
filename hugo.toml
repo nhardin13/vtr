@@ -93,8 +93,8 @@ pluralizelisttitles = false
     enableGoogleMaps = true
     googleMapsApiKey = "{{ .Env.GOOGLE_MAPS_API_KEY }}"  # Use environment variable
 
-    latitude = "39°35'53.2 N"
-    longitude = "84°01'51.1 W"
+    latitude = "39.598085"
+    longitude = "-84.030781"
 
     # Style options: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
     style = "marsala"
@@ -139,7 +139,7 @@ pluralizelisttitles = false
     # Format dates with Go's time formatting
     date_format = "January 2, 2006"
 
-    dropdown_mouse_over = true
+    dropdown_mouse_over = false
 
     disabled_logo = false
     logo_text = "Valley Top Repair"
@@ -159,9 +159,9 @@ pluralizelisttitles = false
 # Enable or disable top bar with social icons
 [params.topbar]
     enable = true
-    text = """<p class="hidden-sm hidden-xs">Contact us on 937-630-3023 or contact@valleytoprepair</p>
+    text = """<p class="hidden-sm hidden-xs">Contact us on 937-630-3023 or contact@valleytoprepair.com</p>
       <p class="hidden-md hidden-lg"><a href="tel:937-630-3023" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
-      <a href="mailto:contact@valleytoprepair" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:contact@valleytoprepair.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
       </p>
       """
 
