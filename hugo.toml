@@ -231,3 +231,7 @@ pluralizelisttitles = false
 
 [params.footer.recent_posts]
     enable = false
+
+[module]
+  [[module.imports]]
+    path = "github.com/devcows/hugo-universal-theme"
