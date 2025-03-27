@@ -145,7 +145,7 @@ pluralizelisttitles = false
     logo_text = "Valley Top Repair"
 
     logo = "img/vtr_logo.png"
-    logo_small = "img/vtr_logo_small.png"
+    logo_small = "img/vtr_logo-small.png"
     contact_url = "/contact"
     address = """<p class="text-uppercase"><strong>Valley Top Repair</strong>
         <br>3150 Clear Springs Rd
