@@ -13,10 +13,9 @@ summaryLength = 70
 pluralizelisttitles = false
 
 [services]
-    # Enable comments by entering your Disqus shortname
     # Enable Google Analytics by entering your tracking code
     [services.googleAnalytics]
-        id = ""
+        id = "{{ .Env.GOOGLE_ANALYTICS_API_KEY }}"  # Use environment variable
 
 # Main menu
 [menu]
