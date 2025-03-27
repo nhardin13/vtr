@@ -77,11 +77,11 @@ pluralizelisttitles = false
     url = "https://facebook.com"
     pre = "<i class='fab fa-2x fa-facebook'></i>"
 
-[[menu.topbar]]
-    weight = 5
-    name = "Email"
-    url = "mailto:contact@valleytiprepair.com"
-    pre = "<i class='fas fa-2x fa-envelope'></i>"
+# [[menu.topbar]]
+#    weight = 5
+#    name = "Email"
+#    url = "mailto:contact@valleytiprepair.com"
+#    pre = "<i class='fas fa-2x fa-envelope'></i>"
 
 [params]
 
@@ -159,11 +159,11 @@ pluralizelisttitles = false
 # Enable or disable top bar with social icons
 [params.topbar]
     enable = true
-    text = """<p class="hidden-sm hidden-xs">Contact us on 937-630-3023 or contact@valleytoprepair.com</p>
-      <p class="hidden-md hidden-lg"><a href="tel:937-630-3023" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
-      <a href="mailto:contact@valleytoprepair.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
-      </p>
-      """
+    # text = """<p class="hidden-sm hidden-xs">Contact us on 937-630-3023 or contact@valleytoprepair.com</p>
+    #  <p class="hidden-md hidden-lg"><a href="tel:937-630-3023" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
+    #  <a href="mailto:contact@valleytoprepair.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
+    #  </p>
+    #  """
 
 # Enable and disable widgets for the right sidebar
 [params.widgets]
