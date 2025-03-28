@@ -2,13 +2,13 @@
   {{ if isset .Site.Params "latitude" }}
     {{ if isset .Site.Params "longitude" }}
         <div class="hidden">
-          <input id="gmap-lat" value="{{ .Site.Params.latitude }}" />
-          <input id="gmap-lng" value="{{ .Site.Params.longitude }}" />
-          <input id="gmap-marker" value="{{ "img/marker.png" | relURL }}" />
+          <input id="gmap-lat" value="{{ .Site.Params.latitude }}" title="Latitude" placeholder="Enter latitude" />
+          <input id="gmap-lng" value="{{ .Site.Params.longitude }}" title="Longitude" placeholder="Enter longitude" />
+          <input id="gmap-marker" value="{{ "img/marker.png" | relURL }}" title="Marker Image URL" placeholder="Enter marker image URL" />
           {{ if isset .Site.Params "direction" }}
-            <input id="gmap-dir" value="{{ .Site.Params.direction }}" />
+            <input id="gmap-dir-unique" value="{{ .Site.Params.direction }}" title="Direction" placeholder="Enter direction" />
           {{ else }}
-            <input id="gmap-dir" value="{{ .Site.Params.latitude }},{{ .Site.Params.longitude }}" />
+            <input id="gmap-dir" value="{{ .Site.Params.latitude }},{{ .Site.Params.longitude }}" title="Coordinates" placeholder="Enter coordinates" />
           {{ end }}
         </div>
         <div id="map" />

@@ -15,7 +15,7 @@ pluralizelisttitles = false
 [services]
     # Enable Google Analytics by retrieving the tracking code from the environment
     [services.googleAnalytics]
-        id = "{{ getenv `GOOGLE_ANALYTICS_API_KEY` }}"  # Use getenv to fetch the API key
+        id = "{{ getenv 'GOOGLE_ANALYTICS_API_KEY' }}" # Use getenv to fetch the API key
 
 # Main menu
 [menu]
@@ -114,7 +114,7 @@ pluralizelisttitles = false
 
     # Google Maps widget: Retrieve the API key from the environment
     enableGoogleMaps = true
-    googleMapsApiKey = "{{ getenv `GOOGLE_MAPS_API_KEY` }}"  # Use getenv to fetch the API key
+    googleMapsApiKey = "{{ getenv 'GOOGLE_MAPS_API_KEY' }}"  # Use getenv to fetch the API key
 
     latitude = "39.598085"
     longitude = "-84.030781"
@@ -155,7 +155,7 @@ pluralizelisttitles = false
     #
     # Formspree reCAPTCHA: Retrieve the reCAPTCHA key from the environment
     enableRecaptchaInContactForm = true
-    googleRecaptchaKey = "{{ getenv `GOOGLE_RECAPTCHA_KEY` }}"  # Use getenv to fetch the reCAPTCHA key
+    googleRecaptchaKey = "{{ getenv 'GOOGLE_RECAPTCHA_KEY' }}"  # Use getenv to fetch the reCAPTCHA key
 
     about_us = "<p>At Valley Top Repair, we take pride in being your trusted local partner for repair and maintenance services. Specializing in lawn and garden equipment, small engines, and light vehicle repair, we’re here to keep your equipment, machines, and vehicles running smoothly.</p>"
     copyright = "Copyright (c) 2025, Valley Top Repair LLC; all rights reserved."
