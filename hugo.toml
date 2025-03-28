@@ -32,11 +32,34 @@ pluralizelisttitles = false
     weight     = 2
 
 [[menu.main]]
+    name       = "Services"
+    url        = "/services/"
+    weight     = 1
+    parent     = "menu.services"
+
+[[menu.main]]
+    name       = "Pricing"
+    url        = "/pricing/"
+    weight     = 2
+    parent     = "menu.services"    
+
+[[menu.main]]
+    name       = "Hourly Rate & Pickup/Dropoff"
+    url        = "/rate-fees-pickup/"
+    weight     = 3
+    parent     = "menu.services"
+
+[[menu.main]]
+    name       = "Warranty"
+    url        = "/warranty/"
+    weight     = 4
+    parent     = "menu.services"
+
+[[menu.main]]
     name       = "About"
     identifier = "menu.about"
     url        = ""
     weight     = 3
-    post       = 2
 
 [[menu.main]]
     name       = "About Us"
