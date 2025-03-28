@@ -11,3 +11,5 @@ Outside of Tune-Up Pricing, the standard service rate is $50.00/hour + Parts req
 A $40.00 estimate fee is due for equipment that is NOT repaired, which covers the cost of the diagnosis and time spent looking up required parts for the repair. The estimate fee is waived if the customer chooses to have the equipment repaired.  
 
 Equipment pickup and delivery is available upon request for an additional fee starting at $50, depending on distance. Mower or equipment width cannot exceed 72".  
+
+&nbsp;
