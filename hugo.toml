@@ -13,9 +13,9 @@ summaryLength = 70
 pluralizelisttitles = false
 
 [services]
-    # Enable Google Analytics by entering your tracking code
+    # Enable Google Analytics by retrieving the tracking code from the environment
     [services.googleAnalytics]
-        id = "{{ .Env.GOOGLE_ANALYTICS_API_KEY }}"  # Use environment variable
+        id = "{{ getenv `GOOGLE_ANALYTICS_API_KEY` }}"  # Use getenv to fetch the API key
 
 # Main menu
 [menu]
@@ -112,9 +112,9 @@ pluralizelisttitles = false
     facebook_site = "" # the Facebook handle of your site ('https://www.facebook.com/HANDLE')
     default_sharing_image = "img/sharing-default.png"
 
-    # Google Maps widget: If `googleMapsApiKey` is not set, no key will be passed to Google (which likely results in a broken map widget).
+    # Google Maps widget: Retrieve the API key from the environment
     enableGoogleMaps = true
-    googleMapsApiKey = "{{ .Env.GOOGLE_MAPS_API_KEY }}"  # Use environment variable
+    googleMapsApiKey = "{{ getenv `GOOGLE_MAPS_API_KEY` }}"  # Use getenv to fetch the API key
 
     latitude = "39.598085"
     longitude = "-84.030781"
@@ -153,8 +153,9 @@ pluralizelisttitles = false
     #   5. change `enableRecaptchaInContactForm` is to true
     #   6. enter site key into `googleRecaptchaKey` to enable a recaptcha widget in your page.
     #
+    # Formspree reCAPTCHA: Retrieve the reCAPTCHA key from the environment
     enableRecaptchaInContactForm = true
-    googleRecaptchaKey = "{{ .Env.GOOGLE_RECAPTCHA_KEY }}"  # Use environment variable
+    googleRecaptchaKey = "{{ getenv `GOOGLE_RECAPTCHA_KEY` }}"  # Use getenv to fetch the reCAPTCHA key
 
     about_us = "<p>At Valley Top Repair, we take pride in being your trusted local partner for repair and maintenance services. Specializing in lawn and garden equipment, small engines, and light vehicle repair, we’re here to keep your equipment, machines, and vehicles running smoothly.</p>"
     copyright = "Copyright (c) 2025, Valley Top Repair LLC; all rights reserved."
