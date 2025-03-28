@@ -259,3 +259,7 @@ pluralizelisttitles = false
 [module]
   [[module.imports]]
     path = "github.com/devcows/hugo-universal-theme"
+
+[security]
+  [security.funcs]
+    getenv = ["^.*$"]  # Allow getenv for all environment variables
