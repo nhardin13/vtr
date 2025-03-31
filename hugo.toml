@@ -94,11 +94,11 @@ pluralizelisttitles = false
     url = "https://github.com/nhardin13/vtr"
     pre = "<i class='fab fa-2x fa-github'></i>"
 
-[[menu.topbar]]
-    weight = 3
-    name = "Facebook"
-    url = "https://facebook.com"
-    pre = "<i class='fab fa-2x fa-facebook'></i>"
+# [[menu.topbar]]
+#    weight = 3
+#    name = "Facebook"
+#    url = "https://facebook.com"
+#    pre = "<i class='fab fa-2x fa-facebook'></i>"
 
 # [[menu.topbar]]
 #    weight = 5
@@ -182,7 +182,7 @@ pluralizelisttitles = false
 
 # Enable or disable top bar with social icons
 [params.topbar]
-    enable = true
+    enable = false
     # text = """<p class="hidden-sm hidden-xs">Contact us on 937-630-3023 or contact@valleytoprepair.com</p>
     #  <p class="hidden-md hidden-lg"><a href="tel:937-630-3023" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
     #  <a href="mailto:contact@valleytoprepair.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
