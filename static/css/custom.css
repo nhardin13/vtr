@@ -30,3 +30,7 @@
     margin-top: 60px !important;
     margin-bottom: 0px !important;
 }
+
+.home-carousel {
+    background: url('/img/texture-bw.png') center center repeat !important;
+  }
