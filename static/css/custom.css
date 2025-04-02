@@ -14,3 +14,19 @@
 .box-simple {
     min-height: 230px;
 }
+
+.navbar-brand img {
+    width: 300px !important;
+    height: auto !important;
+    max-height: 150px !important;
+}
+
+.navbar-brand {
+    width: 500px !important;
+    height: 125px !important;
+}
+
+.navbar-nav {
+    margin-top: 60px !important;
+    margin-bottom: 0px !important;
+}

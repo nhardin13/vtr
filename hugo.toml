@@ -121,6 +121,8 @@ pluralizelisttitles = false
         <br>Ohio, 45370
       </p>
       """
+      
+    customCSS = ["css/custom.css"]
 
 [permalinks]
 
