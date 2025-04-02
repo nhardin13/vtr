@@ -57,7 +57,6 @@ pluralizelisttitles = false
 [[menu.main]]
     name       = "About"
     identifier = "menu.about"
-    url        = ""
     weight     = 7
 
 [[menu.main]]
@@ -139,7 +138,7 @@ pluralizelisttitles = false
     enable = true
     cols = 3  # Default: 3, Available values 2,3,4,6
     # All features are defined in their own files. You can find example items
-    # at 'vtr_site/data/features'.
+    # at 'vtr/data/features'.
     # For more information take a look at the README.
 
 [params.see_more]
