@@ -95,11 +95,11 @@ style = "marsala"
 # email. Visitors can send up to 50 emails each month for free.
 
 # Enable the contact form by entering your Formspree.io endpoint URL
-formspree_action = "$FORMSPREE_ENDPOINT"
+formspree_action = "https://formspree.io/f/mdkeloer"
 
 # Formspree form supports Google reCAPTCHA Key (type v2).
-enablerecaptchaincontactform = true
-googlerecaptchakey = "$GOOGLE_RECAPTCHA_KEY"  # Use env var
+enablerecaptchaincontactform = false
+googlerecaptchakey = ""
 
 about_us = "<p>At Valley Top Repair, we take pride in being your trusted local partner for repair and maintenance services. Specializing in lawn and garden equipment, small engines, and light vehicle repair, we’re here to keep your equipment, machines, and vehicles running smoothly.</p>"
 copyright = "Copyright (c) 2025, Valley Top Repair LLC; all rights reserved."

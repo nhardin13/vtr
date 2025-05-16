@@ -1,4 +1,4 @@
-{{ if and .Site.Params.enableGoogleMaps .Site.Params.googleMapsApiKey }}
+{{ if and .Site.Params.enableGoogleMaps .Site.Params.googlemapsapikey }}
   {{ if isset .Site.Params "latitude" }}
     {{ if isset .Site.Params "longitude" }}
         <div class="hidden">
@@ -11,7 +11,7 @@
             <input id="gmap-dir" value="{{ .Site.Params.latitude }},{{ .Site.Params.longitude }}" title="Coordinates" placeholder="Enter coordinates" />
           {{ end }}
         </div>
-        <div id="map" />
+        <div id="map"></div>
     {{ end }}
   {{ end }}
 {{ end }}
