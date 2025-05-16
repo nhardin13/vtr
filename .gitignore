@@ -1,6 +1,7 @@
 public
 node_modules
-resources
 .hugo_build.lock
-secrets.toml
-
+vtr.code-workspace
+.dev.vars
+.wrangler
+wrangler.toml

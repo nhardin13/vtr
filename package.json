@@ -19,5 +19,8 @@
   "description": "",
   "devDependencies": {
     "@filipecarneiro/hugo-bootstrap-theme": "^1.0.50"
+  },
+  "dependencies": {
+    "wrangler": "^4.15.2"
   }
 }
