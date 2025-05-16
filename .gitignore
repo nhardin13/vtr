@@ -4,4 +4,3 @@ node_modules
 vtr.code-workspace
 .dev.vars
 .wrangler
-wrangler.toml
