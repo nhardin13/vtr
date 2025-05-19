@@ -35,9 +35,9 @@
                                 <textarea id="message" class="form-control" name="message" required></textarea>
                             </div>
                         </div>
-                        {{ if and .Site.Params.enableRecaptchaInContactForm .Site.Params.googleRecaptchaKey }}
+                        {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
                         <div class="col-sm-12">
-                            <div class="g-recaptcha" data-sitekey="{{ .Site.Params.googleRecaptchaKey }}"></div>
+                            <div class="g-recaptcha" data-sitekey="{{ .Site.Params.googlerecaptchakey }}"></div>
                             <br/>
                         </div>
                         {{ end }}
@@ -64,7 +64,7 @@
               <h3 class="text-uppercase"> {{ i18n "contactAddrTitle" }}</h3>
 
                 {{ .Site.Params.address | safeHTML }}
-
+                
             </section>
 
             {{ end }}
