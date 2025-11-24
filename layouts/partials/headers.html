@@ -33,6 +33,19 @@
 <!-- Custom stylesheet - for your changes (cache-bypass: v2) -->
 <link href="{{ "css/custom.v2.css" | relURL }}?{{ now.Unix }}" rel="stylesheet">
 
+<!-- Inline critical CSS (temporary) - ensures basic layout while external CSS deploys -->
+<style>
+  :root{--vtr-navy:#1a2332;--vtr-copper:#b87a3b}
+  body{font-family: 'Source Serif Pro', serif;}
+  img{max-width:100%;height:auto;display:block}
+  .navbar{width:100%}
+  .navbar-brand img{max-height:60px;width:auto}
+  .home-carousel{min-height:420px;background:linear-gradient(135deg,var(--vtr-navy),#2d3e52);}
+  .carousel-image{max-height:350px;object-fit:contain;width:100%}
+  .trust-badge{display:inline-flex;flex-direction:column;align-items:center;padding:.75rem;border:2px solid var(--vtr-copper);border-radius:8px}
+  .trust-badge-value{font-weight:700;color:#1a2332}
+</style>
+
 <!-- Favicon and Apple touch icons -->
 <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}" type="image/x-icon" />
 <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}" />
