@@ -1,39 +1,35 @@
 {{ if default true .Site.Params.CarouselHomepage.enable }}
 {{ if isset .Site.Data "carousel" }}
 {{ if gt (len .Site.Data.carousel) 0 }}
-<section>
-    <div class="home-carousel">
-        <div class="dark-mask"></div>
-        <div class="container">
-            <div class="swiper homepage"
-                data-autoplay="{{ default true .Site.Params.CarouselHomepage.auto_play }}"
-                data-slide-speed="{{ default 2000 .Site.Params.CarouselHomepage.slide_speed }}"
-                data-pagination-speed="{{ default 1000 .Site.Params.CarouselHomepage.pagination_speed }}">
-                <div class="swiper-wrapper">
-                    {{ range sort .Site.Data.carousel "weight" }}
-                    <div class="swiper-slide">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-sm-5">
-                                    <h1>{{ .title | safeHTML }}</h1>
-                                    <p>{{ .description | safeHTML }}</p>
-                                </div>
-                                <div class="col-sm-7">
-                                    <img class="img-fluid" src="{{ .image }}" alt="">
-                                </div>
-                            </div>
+<section class="home-carousel">
+    <div class="dark-mask"></div>
+    <div class="swiper homepage"
+        data-autoplay="{{ default true .Site.Params.CarouselHomepage.auto_play }}"
+        data-slide-speed="{{ default 2000 .Site.Params.CarouselHomepage.slide_speed }}"
+        data-pagination-speed="{{ default 1000 .Site.Params.CarouselHomepage.pagination_speed }}">
+        <div class="swiper-wrapper">
+            {{ range sort .Site.Data.carousel "weight" }}
+            <div class="swiper-slide">
+                <div class="container h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-sm-5">
+                            <h1>{{ .title | safeHTML }}</h1>
+                            <p>{{ .description | safeHTML }}</p>
+                        </div>
+                        <div class="col-sm-7 text-center">
+                            <img class="carousel-image" src="{{ .image }}" alt="">
                         </div>
                     </div>
-                    {{ end }}
                 </div>
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
-                
-                <!-- Navigation -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
             </div>
+            {{ end }}
         </div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+        
+        <!-- Navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
 </section>
 {{ end }}
