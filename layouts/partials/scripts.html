@@ -6,6 +6,9 @@
 <!-- Swiper Carousel JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- jQuery for map initialization -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 {{ if and .Site.Params.enablegooglemaps .Site.Params.googlemapsapikey }}
 <script src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=3.exp"></script>
 <script src="{{ "js/hpneo.gmaps.js" | relURL }}"></script>

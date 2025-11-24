@@ -5,12 +5,10 @@
 
             <section>
 
-                {{/* Removed: {{ .Content }} */}}
-
                 {{ if isset .Site.Params "formspree_action" }}
 
                 <div class="heading">
-                  <h3>{{ i18n "contactForm" }}</h3>
+                  <h2>{{ i18n "contactForm" }}</h2>
                 </div>
 
                 <div id="contact-message"></div>
