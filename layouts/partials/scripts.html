@@ -1,10 +1,10 @@
 {{ template "_internal/google_analytics.html" . }}
 
 <!-- Bootstrap 5 JS (no jQuery dependency) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEKYAqQTEe2qDH6KO+8w3xK4y6G2/snLmMkdhP/mgrToPvN73Qog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Swiper Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" integrity="sha512-Z9n3Ziv4FaK8Vu6KSKjLnS03x8zkCNVlXTRE2ysJRRcYPEiGcgsc26eWRg3h2m/Mt5c25xNJkXTm1i7NsJFaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{ if and .Site.Params.enablegooglemaps .Site.Params.googlemapsapikey }}
 <script src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=3.exp"></script>
@@ -21,23 +21,45 @@
 <!-- Swiper initialization and scroll animations -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Swiper Carousel
-  const homeSwiper = new Swiper('.homepage', {
-    loop: true,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    speed: 1000,
-  });
+  console.log('DOMContentLoaded fired');
+  
+  // Debug: Check if Swiper is available
+  if (typeof Swiper === 'undefined') {
+    console.error('❌ Swiper library not loaded!');
+    return;
+  }
+  console.log('✅ Swiper library loaded:', Swiper);
+  
+  // Debug: Check if element exists
+  const swiperEl = document.querySelector('.homepage');
+  console.log('Swiper element found:', swiperEl);
+  if (!swiperEl) {
+    console.error('❌ .homepage element not found in DOM!');
+    return;
+  }
+  
+  try {
+    // Swiper Carousel
+    const homeSwiper = new Swiper('.homepage', {
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      speed: 1000,
+    });
+    console.log('✅ Swiper initialized successfully:', homeSwiper);
+  } catch (error) {
+    console.error('❌ Swiper initialization error:', error);
+  }
 
   // Scroll Animation for Cards
   const observerOptions = {
