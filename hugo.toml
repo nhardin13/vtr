@@ -88,7 +88,8 @@ latitude = "39.598085"
 longitude = "-84.030781"
 
 # Style options: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
-style = "marsala"
+# Using custom design system instead - Navy + Copper theme via custom.css
+# style = "marsala"
 
 # Since this template is static, the contact form uses www.formspree.io as a
 # proxy. The form makes a POST request to their servers to send the actual

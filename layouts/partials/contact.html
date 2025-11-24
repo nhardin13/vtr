@@ -15,36 +15,43 @@
 
                 <div id="contact-message"></div>
 
-                <form {{ with .Site.Params.contact_form_ajax }}class="contact-form-ajax"{{ else }}{{ end }} method="post" action="{{ .Site.Params.formspree_action }}">
+                <form {{ with .Site.Params.contact_form_ajax }}class="contact-form-ajax"{{ else }}{{ end }} method="post" action="{{ .Site.Params.formspree_action }}" novalidate>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
                               <label for="name">{{ i18n "contactName" }}</label>
-                                <input type="text" class="form-control" name="name" id="name" required>
+                              <div class="invalid-feedback">
+                                Please provide a name.
+                              </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="email" autocomplete="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                 <label for="email">{{ i18n "contactMail" }}</label>
-                                <input type="email" autocomplete="email" class="form-control" name="email" id="email" required>
+                                <div class="invalid-feedback">
+                                  Please provide a valid email.
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                              <textarea id="message" class="form-control form-control-textarea" name="message" placeholder="Your Message" required></textarea>
                               <label for="message">{{ i18n "contactMessage" }}</label>
-                                <textarea id="message" class="form-control" name="message" required></textarea>
+                              <div class="invalid-feedback">
+                                Please provide a message.
+                              </div>
                             </div>
                         </div>
                         {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mb-3">
                             <div class="g-recaptcha" data-sitekey="{{ .Site.Params.googlerecaptchakey }}"></div>
-                            <br/>
                         </div>
                         {{ end }}
 
                         <div class="col-sm-12 text-center">
-                          <button type="submit" class="btn btn-template-main"><i class="far fa-envelope"></i>{{ i18n "contactSend" }}</button>
-
+                          <button type="submit" class="btn btn-template-main btn-lg"><i class="far fa-envelope me-2"></i>{{ i18n "contactSend" }}</button>
                         </div>
                     </div>
                     <!-- /.row -->
