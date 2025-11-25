@@ -1,0 +1,12 @@
+{{ if .Params.showHero | default true }}
+<div class="page-hero">
+  <div class="container">
+    {{ if .Title }}
+    <h1>{{ .Title }}</h1>
+    {{ end }}
+    {{ if .Params.heroSubtitle }}
+    <p>{{ .Params.heroSubtitle }}</p>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

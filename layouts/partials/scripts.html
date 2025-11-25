@@ -1,4 +1,13 @@
-{{ template "_internal/google_analytics.html" . }}
+{{ if (getenv "GOOGLE_ANALYTICS_API_KEY") }}
+<!-- Google Analytics with environment variable -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv "GOOGLE_ANALYTICS_API_KEY" }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ getenv "GOOGLE_ANALYTICS_API_KEY" }}');
+</script>
+{{ end }}
 
 <!-- Bootstrap 5 JS (no jQuery dependency) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -9,10 +18,19 @@
 <!-- jQuery for map initialization -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-{{ if and .Site.Params.enablegooglemaps .Site.Params.googlemapsapikey }}
-<script src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=3.exp"></script>
-<script src="{{ "js/hpneo.gmaps.js" | relURL }}"></script>
-<script src="{{ "js/gmaps.init.js" | relURL }}"></script>
+<!-- jQuery Cookie Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- jQuery Waypoint Plugin for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- jQuery CounterUp Plugin for number animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{{ if (getenv "GOOGLE_MAPS_API_KEY") }}
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly"></script>
+<script defer src="{{ "js/hpneo.gmaps.js" | relURL }}"></script>
+<script defer src="{{ "js/gmaps.init.js" | relURL }}"></script>
 {{ end }}
 
 {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
@@ -33,11 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   console.log('✅ Swiper library loaded:', Swiper);
   
-  // Debug: Check if element exists
+  // Check if element exists (only on pages with carousel)
   const swiperEl = document.querySelector('.homepage');
-  console.log('Swiper element found:', swiperEl);
   if (!swiperEl) {
-    console.error('❌ .homepage element not found in DOM!');
+    // Element not found - this is normal on pages without a carousel
     return;
   }
   

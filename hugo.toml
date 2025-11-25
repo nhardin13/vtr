@@ -16,9 +16,9 @@ pluralizelisttitles = false
     path = "github.com/devcows/hugo-universal-theme"
 
 [services]
-    # Enable Google Analytics by retrieving the tracking code from the environment
+    # Google Analytics configuration - use direct ID if available
     [services.googleAnalytics]
-        id = "$GOOGLE_ANALYTICS_API_KEY"  # Use env var
+        id = ""
 
 # Main menu
 [menu]
@@ -153,3 +153,8 @@ link_text = "Services"
 [security]
   [security.funcs]
     getenv = ["^GOOGLE_ANALYTICS_API_KEY$", "^GOOGLE_MAPS_API_KEY$", "^GOOGLE_RECAPTCHA_KEY$", "^FORMSPREE_ENDPOINT$"]  # Restrict getenv to specific variables
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

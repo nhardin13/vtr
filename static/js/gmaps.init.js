@@ -1,11 +1,30 @@
 /* global GMaps: true */
 
 $(document).ready(function () {
-  map()
+  // Wait for Google Maps API to load
+  if (typeof window.google === 'undefined' || !window.google.maps) {
+    // Wait for Google Maps to load
+    window.addEventListener('load', function () {
+      map()
+    })
+  } else {
+    // Google Maps already loaded, initialize map
+    map()
+  }
 })
 
 function map () {
   if ($('#map').length) {
+    // Check if Google Maps and GMaps are loaded
+    if (typeof window.google === 'undefined' || !window.google.maps) {
+      console.warn('⚠️ Google Maps API not available, skipping map initialization')
+      return
+    }
+    if (typeof GMaps === 'undefined') {
+      console.warn('⚠️ GMaps library not loaded, skipping map initialization')
+      return
+    }
+    
     const lat = $('#gmap-lat').val()
     const lng = $('#gmap-lng').val()
     const direction = $('#gmap-dir').val()

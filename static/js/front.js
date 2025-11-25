@@ -1,10 +1,10 @@
 /* global $this: true */
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "animationsSlider" }] */
 
-if ($.cookie('themeCSSpath')) {
+if (typeof $.cookie !== 'undefined' && $.cookie('themeCSSpath')) {
   $('link#theme-stylesheet').attr('href', $.cookie('themeCSSpath'))
 }
-if ($.cookie('themeLayout')) {
+if (typeof $.cookie !== 'undefined' && $.cookie('themeLayout')) {
   $('body').addClass($.cookie('themeLayout'))
 }
 
@@ -162,6 +162,11 @@ function menuMouseOver () {
 
 /* animations */
 function animations () {
+  // Check if waypoint plugin is loaded
+  if (typeof $.fn.waypoint === 'undefined') {
+    console.warn('⚠️ Waypoint plugin not loaded, skipping scroll animations')
+    return
+  }
   let delayTime = 0
   $('[data-animate]').css({ opacity: '0' })
   $('[data-animate]').waypoint(function () {
@@ -213,6 +218,11 @@ function animationsSlider () {
 
 /* counters */
 function counters () {
+  // Check if counterUp plugin is loaded
+  if (typeof $.fn.counterUp === 'undefined') {
+    console.warn('⚠️ CounterUp plugin not loaded, skipping counter animations')
+    return
+  }
   $('.counter').counterUp({
     delay: 10,
     time: 1000
