@@ -236,7 +236,7 @@
   });
   
   // Track custom events for service pages
-  {{ if eq $.File.LogicalName "services.md" }}
+  {{ if and $.File (eq $.File.LogicalName "services.md") }}
   gtag('event', 'view_item', {
     'items': [
       {'item_id': 'lawn_mowers', 'item_name': 'Lawn Mower Repair'},
