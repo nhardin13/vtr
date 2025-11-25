@@ -6,7 +6,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ "/" | relLangURL }}"><i class="fas fa-home me-1"></i>{{ i18n "navHome" | default "Home" }}</a></li>
-                        {{ if and (ne .Type "page") (ne (.Type | title) .Title) }}
+                        {{ if and (ne .Type "page") (ne (.Type | title) .Title) (ne .Type "contact") }}
                         <li class="breadcrumb-item"><a href="/{{ .Type }}/">{{ .Type | title }}</a></li>
                         {{ end }}
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
