@@ -1,9 +1,11 @@
 ---
 title: "Warranty & Guarantees"
-description: "Valley Top Repair's warranty and guarantee information"
+description: "Valley Top Repair backs every repair with a comprehensive warranty. Learn about our guarantee and how we protect your equipment investment."
+keywords: ["warranty","guarantee","repair protection","valley top repair"]
 draft: false
 showHero: true
 heroSubtitle: "Your repair protected with our comprehensive warranty"
+unsafe: true
 ---
 
 ## What We Guarantee
@@ -16,19 +18,19 @@ Valley Top Repair stands behind every repair we perform. Our warranty protects y
 
 <div class="cards-grid">
   <div class="service-card">
-    <div class="service-card-icon">✅</div>
+    <div class="service-card-icon"><i class="fas fa-check"></i></div>
     <h3>30-Day Parts Warranty</h3>
     <p>All parts installed by our technicians are warranted against defects for 30 days from repair completion.</p>
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">🔧</div>
+    <div class="service-card-icon"><i class="fas fa-wrench"></i></div>
     <h3>Work Guarantee</h3>
     <p>If the same issue recurs within 30 days, we'll re-examine the equipment at no charge.</p>
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">👨‍🔧</div>
+    <div class="service-card-icon"><i class="fas fa-user-tie"></i></div>
     <h3>Professional Service</h3>
     <p>Every repair performed by a certified technician using proven techniques.</p>
   </div>
@@ -116,19 +118,19 @@ Our team is happy to answer any questions about warranty coverage:
   <div class="row g-0">
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🇺🇸</div>
+        <div class="trust-signal-number"><i class="fas fa-flag-usa"></i></div>
         <div class="trust-signal-label">Veteran Owned</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🌟</div>
+        <div class="trust-signal-number"><i class="fas fa-star"></i></div>
         <div class="trust-signal-label">50+ Brands</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">✅</div>
+        <div class="trust-signal-number"><i class="fas fa-check"></i></div>
         <div class="trust-signal-label">Warranty Backed</div>
       </div>
     </div>

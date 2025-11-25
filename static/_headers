@@ -9,6 +9,18 @@
 
 /img/*
   Cache-Control: public, max-age=2592000
+  Accept-Ranges: bytes
+
+/img/*.avif
+  Cache-Control: public, max-age=2592000
+  Content-Type: image/avif
+
+/img/*.png
+  Cache-Control: public, max-age=2592000
+  Content-Encoding: gzip
+
+/img/*.ico
+  Cache-Control: public, max-age=604800
 
 /*.html
   Cache-Control: no-cache, must-revalidate

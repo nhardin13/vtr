@@ -20,6 +20,12 @@ pluralizelisttitles = false
     [services.googleAnalytics]
         id = ""
 
+# Google Analytics 4 Configuration
+googleAnalyticsID = ""  # Leave empty - loads from environment variable
+
+# Heatmap Analytics via Hotjar
+hotjarID = ""  # Leave empty - loads from environment variable
+
 # Main menu
 [menu]
 [[menu.main]]
@@ -152,9 +158,15 @@ link_text = "Services"
 
 [security]
   [security.funcs]
-    getenv = ["^GOOGLE_ANALYTICS_API_KEY$", "^GOOGLE_MAPS_API_KEY$", "^GOOGLE_RECAPTCHA_KEY$", "^FORMSPREE_ENDPOINT$"]  # Restrict getenv to specific variables
+    getenv = ["^GOOGLE_ANALYTICS_ID$", "^HOTJAR_ID$", "^GOOGLE_ANALYTICS_API_KEY$", "^GOOGLE_MAPS_API_KEY$", "^GOOGLE_RECAPTCHA_KEY$", "^FORMSPREE_ENDPOINT$"]  # Restrict getenv to specific variables
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+# Sitemap configuration for SEO
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5

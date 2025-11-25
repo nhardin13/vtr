@@ -28,9 +28,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{ if (getenv "GOOGLE_MAPS_API_KEY") }}
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly"></script>
-<script defer src="{{ "js/hpneo.gmaps.js" | relURL }}"></script>
-<script defer src="{{ "js/gmaps.init.js" | relURL }}"></script>
+<script>
+  // Initialize Google Maps callback when API loads
+  window.initGoogleMaps = function() {
+    console.log('✅ Google Maps API loaded');
+    if (typeof gmap === 'undefined') {
+      console.log('Loading gmaps...');
+      var gmapsScript = document.createElement('script');
+      gmapsScript.src = "{{ "js/hpneo.gmaps.js" | relURL }}";
+      document.head.appendChild(gmapsScript);
+      
+      // Then load gmaps.init.js
+      setTimeout(function() {
+        var gMapsInitScript = document.createElement('script');
+        gMapsInitScript.src = "{{ "js/gmaps.init.js" | relURL }}";
+        document.head.appendChild(gMapsInitScript);
+      }, 500);
+    }
+  };
+</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps"></script>
 {{ end }}
 
 {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
@@ -120,3 +137,223 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- Lazy Loading Fade-in Animation -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle lazy-loaded images with fade-in effect
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.addEventListener('load', () => {
+            img.classList.add('loaded');
+          });
+          // If image is already cached/loaded
+          if (img.complete) {
+            img.classList.add('loaded');
+          }
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    // Observe all lazy-loaded images
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.classList.add('loaded');
+    });
+  }
+});
+</script>
+
+<!-- Pricing Tier Toggle -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  const tierContents = document.querySelectorAll('.pricing-tier-content');
+  
+  if (toggleButtons.length === 0) return; // Exit if not on pricing page
+  
+  // Load saved preference from localStorage
+  const savedTier = localStorage.getItem('pricingTier') || 'residential';
+  
+  function showTier(tier) {
+    // Hide all tiers
+    tierContents.forEach(content => {
+      content.classList.remove('active');
+    });
+    
+    // Deactivate all buttons
+    toggleButtons.forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Show selected tier
+    const selectedContent = document.getElementById(tier + '-tier');
+    if (selectedContent) {
+      selectedContent.classList.add('active');
+    }
+    
+    // Activate selected button
+    const selectedButton = document.querySelector(`[data-tier="${tier}"]`);
+    if (selectedButton) {
+      selectedButton.classList.add('active');
+    }
+    
+    // Save preference
+    localStorage.setItem('pricingTier', tier);
+  }
+  
+  // Add click handlers to buttons
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tier = this.getAttribute('data-tier');
+      showTier(tier);
+    });
+  });
+  
+  // Show initial tier
+  showTier(savedTier);
+});
+</script>
+
+<!-- Dark Mode Toggle -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const htmlElement = document.documentElement;
+  
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  
+  // Apply saved theme on page load
+  if (currentTheme === 'dark') {
+    htmlElement.classList.add('dark-mode');
+    updateToggleIcon(true);
+  }
+  
+  // Handle toggle button click
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function() {
+      htmlElement.classList.toggle('dark-mode');
+      const isDarkMode = htmlElement.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      updateToggleIcon(isDarkMode);
+    });
+  }
+  
+  function updateToggleIcon(isDark) {
+    if (darkModeToggle) {
+      const icon = darkModeToggle.querySelector('i');
+      if (icon) {
+        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      }
+    }
+  }
+});
+</script>
+
+<!-- Custom Analytics Events Tracking -->
+<script>
+// Track form submissions for analytics
+document.addEventListener('submit', function(e) {
+  const form = e.target;
+  if (typeof gtag !== 'undefined') {
+    if (form.id === 'contact-form' || form.classList.contains('contact-form')) {
+      gtag('event', 'form_submit', {
+        'event_category': 'engagement',
+        'event_label': 'contact_form'
+      });
+    }
+  }
+});
+
+// Track CTA button clicks
+document.addEventListener('click', function(e) {
+  const button = e.target.closest('[data-analytics-event]');
+  if (button && typeof gtag !== 'undefined') {
+    const eventName = button.getAttribute('data-analytics-event');
+    const eventLabel = button.getAttribute('data-analytics-label') || button.textContent.trim();
+    gtag('event', eventName, {
+      'event_category': 'engagement',
+      'event_label': eventLabel
+    });
+  }
+});
+
+// Track outbound link clicks
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href^="http"]');
+  if (link && !link.href.includes(window.location.hostname)) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'click', {
+        'event_category': 'outbound_link',
+        'event_label': link.href
+      });
+    }
+  }
+});
+
+// Track pricing tier toggle interaction
+const pricingToggles = document.querySelectorAll('.toggle-btn');
+pricingToggles.forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'pricing_toggle', {
+        'event_category': 'engagement',
+        'event_label': this.getAttribute('data-tier') || this.textContent.trim()
+      });
+    }
+  });
+});
+
+// Track scroll depth (25%, 50%, 75%, 100%)
+let scrollDepthTracked = {
+  25: false,
+  50: false,
+  75: false,
+  100: false
+};
+
+window.addEventListener('scroll', function() {
+  if (typeof gtag === 'undefined') return;
+  
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPos = window.scrollY;
+  const scrollPercent = Math.round((scrollPos / scrollHeight) * 100);
+  
+  if (scrollPercent >= 25 && !scrollDepthTracked[25]) {
+    gtag('event', 'scroll_depth', {
+      'event_category': 'engagement',
+      'event_label': '25%'
+    });
+    scrollDepthTracked[25] = true;
+  }
+  if (scrollPercent >= 50 && !scrollDepthTracked[50]) {
+    gtag('event', 'scroll_depth', {
+      'event_category': 'engagement',
+      'event_label': '50%'
+    });
+    scrollDepthTracked[50] = true;
+  }
+  if (scrollPercent >= 75 && !scrollDepthTracked[75]) {
+    gtag('event', 'scroll_depth', {
+      'event_category': 'engagement',
+      'event_label': '75%'
+    });
+    scrollDepthTracked[75] = true;
+  }
+  if (scrollPercent >= 100 && !scrollDepthTracked[100]) {
+    gtag('event', 'scroll_depth', {
+      'event_category': 'engagement',
+      'event_label': '100%'
+    });
+    scrollDepthTracked[100] = true;
+  }
+});
+</script>

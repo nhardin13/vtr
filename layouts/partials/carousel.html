@@ -17,7 +17,7 @@
                             <p>{{ .description | safeHTML }}</p>
                         </div>
                         <div class="col-sm-7 text-center">
-                            <img class="carousel-image" src="{{ .image }}" alt="">
+                            <img class="carousel-image" src="{{ .image }}" alt="{{ .title }}" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 60vw">
                         </div>
                     </div>
                 </div>

@@ -18,9 +18,9 @@
                         <div class="image-wrapper">
                             <a href="{{ .Permalink }}">
                               {{ if isset .Params "banner" }}
-                                <img src="{{ .Params.banner | relURL }}" class="img-fluid" alt="{{ .Title }}" />
-                              {{ else }}
-                                <img src="{{ "img/placeholder.png" | relURL }}" class="img-fluid" alt="{{ .Title }}" />
+                                <img src="{{ .Params.banner | relURL }}" class="img-fluid" alt="{{ .Title }}" loading="lazy" decoding="async" />
+                                {{ else }}
+                                <img src="{{ "img/placeholder.png" | relURL }}" class="img-fluid" alt="{{ .Title }}" loading="lazy" decoding="async" />
                               {{ end }}
                             </a>
                         </div>
@@ -56,17 +56,22 @@ _________________________________________________________ -->
 
 <div id="copyright">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
+        <div class="row align-items-center">
+            <div class="col-md-4 col-sm-6">
                 {{ if isset .Site.Params "copyright" }}
-                <p class="float-start mb-0">{{ .Site.Params.copyright | safeHTML }}</p>
+                <p class="mb-0 text-start">{{ .Site.Params.copyright | safeHTML }}</p>
                 {{ end }}
-                <p class="float-end mb-0 text-end">
-                  {{ i18n "templateBy" | markdownify }} <a href="https://bootstrapious.com/universal-business-e-commerce-template">Bootstrapious</a>.
-                  <!-- Not removing this link is part of the licence conditions of the template. Thanks for understanding :) -->
-
-                  {{ i18n "portedBy" | markdownify }} <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>.
+            </div>
+            <div class="col-md-4 col-sm-6 text-center mb-3 mb-sm-0">
+                <p class="mb-0 text-muted small">
+                  {{ i18n "templateBy" | markdownify }} <a href="https://bootstrapious.com/universal-business-e-commerce-template" class="text-decoration-none">Bootstrapious</a>
+                  {{ i18n "portedBy" | markdownify }} <a href="https://github.com/devcows/hugo-universal-theme" class="text-decoration-none">DevCows</a>
                 </p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-end">
+                <a href="#all" id="back-to-top" class="btn-back-to-top" aria-label="Back to top" title="Back to top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
             </div>
         </div>
     </div>

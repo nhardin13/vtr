@@ -1,8 +1,9 @@
 +++  
 title = "Frequently Asked Questions (FAQs)"  
-description = "Frequently asked questions"  
-keywords = ["FAQ","How do I","questions","what if"]
-heroSubtitle = "Get answers to common questions about our repair services, pricing, and warranty"  
+description = "Get answers to common questions about Valley Top Repair services, pricing, warranty, and equipment repair in Spring Valley, Ohio."  
+keywords = ["FAQ","repair questions","warranty","pricing","equipment repair troubleshooting"]
+heroSubtitle = "Get answers to common questions about our repair services, pricing, and warranty"
+unsafe = true
 +++  
 
 <div class="accordion" id="faqAccordion">
@@ -313,19 +314,19 @@ Can't find the answer you're looking for? [Contact us directly](/contact) or giv
   <div class="row g-0">
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🇺🇸</div>
+        <div class="trust-signal-number"><i class="fas fa-flag-usa"></i></div>
         <div class="trust-signal-label">Veteran Owned</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">⏱️</div>
+        <div class="trust-signal-number"><i class="fas fa-clock"></i></div>
         <div class="trust-signal-label">1+ Year Operating</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">💡</div>
+        <div class="trust-signal-number"><i class="fas fa-lightbulb"></i></div>
         <div class="trust-signal-label">Expert Answers</div>
       </div>
     </div>

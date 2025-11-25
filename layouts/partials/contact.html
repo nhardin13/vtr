@@ -17,31 +17,44 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                              <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required aria-describedby="name-feedback">
                               <label for="name">{{ i18n "contactName" }}</label>
-                              <div class="invalid-feedback">
-                                Please provide a name.
+                              <div class="invalid-feedback" id="name-feedback">
+                                <i class="fas fa-exclamation-circle me-1"></i>Please provide a name.
+                              </div>
+                              <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Looks good!
                               </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="email" autocomplete="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                                <input type="email" autocomplete="email" class="form-control" name="email" id="email" placeholder="Your Email" required aria-describedby="email-feedback">
                                 <label for="email">{{ i18n "contactMail" }}</label>
-                                <div class="invalid-feedback">
-                                  Please provide a valid email.
+                                <div class="invalid-feedback" id="email-feedback">
+                                  <i class="fas fa-exclamation-circle me-1"></i>Please provide a valid email.
+                                </div>
+                                <div class="valid-feedback">
+                                  <i class="fas fa-check-circle me-1"></i>Email looks good!
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-floating mb-3">
-                              <textarea id="message" class="form-control form-control-textarea" name="message" placeholder="Your Message" required></textarea>
+                              <textarea id="message" class="form-control form-control-textarea" name="message" placeholder="Your Message" required aria-describedby="message-feedback"></textarea>
                               <label for="message">{{ i18n "contactMessage" }}</label>
-                              <div class="invalid-feedback">
-                                Please provide a message.
+                              <div class="invalid-feedback" id="message-feedback">
+                                <i class="fas fa-exclamation-circle me-1"></i>Please provide a message.
+                              </div>
+                              <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Message looks good!
                               </div>
                             </div>
                         </div>
+
+                        <!-- Honeypot field for spam prevention -->
+                        <input type="text" name="website" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
                         {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
                         <div class="col-sm-12 mb-3">
                             <div class="g-recaptcha" data-sitekey="{{ .Site.Params.googlerecaptchakey }}"></div>
@@ -49,7 +62,9 @@
                         {{ end }}
 
                         <div class="col-sm-12 text-center">
-                          <button type="submit" class="btn btn-template-main btn-lg"><i class="far fa-envelope me-2"></i>{{ i18n "contactSend" }}</button>
+                          <button type="submit" class="btn btn-template-main btn-lg">
+                            <i class="far fa-envelope me-2"></i>{{ i18n "contactSend" }}
+                          </button>
                         </div>
                     </div>
                     <!-- /.row -->

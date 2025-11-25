@@ -1,8 +1,9 @@
 +++  
-title = "Rate, Fees, Pickup/Dropoff"  
-description = "Rate, Fees, Pickup/Dropoff"  
-keywords = ["Rate","Fees","Delivery","Pickup"]
-heroSubtitle = "Transparent pricing with convenient delivery options"  
+title = "Rates, Fees & Delivery"  
+description = "Competitive repair rates, flat fees, and convenient pickup/dropoff service for your equipment in Spring Valley, Ohio. Transparent pricing with no surprises."  
+keywords = ["repair rates","fees","pickup service","delivery","spring valley ohio"]
+heroSubtitle = "Transparent pricing with convenient delivery options"
+unsafe = true
 +++  
 
 ## Service Rates
@@ -70,19 +71,19 @@ If you do decide to go forward, **the $35 diagnostic fee is completely waived**�
 
 <div class="cards-grid">
   <div class="service-card">
-    <div class="service-card-icon">🚗</div>
+    <div class="service-card-icon"><i class="fas fa-car"></i></div>
     <h3>Flexible Pickup</h3>
     <p>We'll come to your home or job site to pick up your equipment. No need to transport it yourself.</p>
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">📍</div>
+    <div class="service-card-icon"><i class="fas fa-map-pin"></i></div>
     <h3>Local Service Area</h3>
     <p>Serving the entire local area with convenient pickup and delivery. Distance determines the fee.</p>
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">⏱️</div>
+    <div class="service-card-icon"><i class="fas fa-clock"></i></div>
     <h3>Quick Turnaround</h3>
     <p>Repair completed quickly and delivered back to you. We coordinate timing that works for you.</p>
   </div>
@@ -161,19 +162,19 @@ Our pricing is straightforward and transparent. If you have questions about any 
   <div class="row g-0">
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">💰</div>
+        <div class="trust-signal-number"><i class="fas fa-dollar-sign"></i></div>
         <div class="trust-signal-label">Transparent Pricing</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🚗</div>
+        <div class="trust-signal-number"><i class="fas fa-car"></i></div>
         <div class="trust-signal-label">Convenient Service</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">📍</div>
+        <div class="trust-signal-number"><i class="fas fa-map-pin"></i></div>
         <div class="trust-signal-label">Local Pickup</div>
       </div>
     </div>

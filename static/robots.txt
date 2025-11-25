@@ -1,0 +1,33 @@
+# Valley Top Repair robots.txt
+# Allows all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Crawl delay to reduce server load (in seconds)
+Crawl-delay: 2
+
+# Sitemap location
+Sitemap: https://www.valleytoprepair.com/sitemap.xml
+
+# Specific rules for common crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 5
+
+# Block bad bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: dotbot
+Disallow: /

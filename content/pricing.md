@@ -1,15 +1,29 @@
 +++  
 title = "Pricing"  
-description = "Pricing"  
-keywords = ["Pricing","Price"]
-heroSubtitle = "Transparent pricing for all your equipment repair and maintenance needs"  
+description = "Transparent equipment repair pricing for lawn mowers, small engines, and outdoor power equipment. No hidden fees at Valley Top Repair in Spring Valley, Ohio."  
+keywords = ["pricing","repair costs","equipment repair rates","spring valley ohio","lawn mower repair"]
+heroSubtitle = "Transparent pricing for all your equipment repair and maintenance needs"
+unsafe = true
 +++  
 
 ## Our Pricing Philosophy
 
 Valley Top Repair offers competitive, transparent pricing with no hidden fees. Most services include comprehensive diagnostics and quality parts. Prices below are for labor; additional parts are added based on what your equipment needs.
 
+Visit our [complete services page](/services/) to learn what equipment we repair, or check our [warranty details](/warranty/) to understand what's covered with every repair.
+
 ---
+
+## Service Tiers Comparison
+
+<div class="pricing-toggle-container">
+  <div class="pricing-toggle-buttons">
+    <button class="toggle-btn active" data-tier="residential">Residential</button>
+    <button class="toggle-btn" data-tier="commercial">Commercial</button>
+  </div>
+</div>
+
+<div id="residential-tier" class="pricing-tier-content active">
 
 ## Residential Equipment
 
@@ -91,7 +105,9 @@ Valley Top Repair offers competitive, transparent pricing with no hidden fees. M
   </div>
 </div>
 
----
+</div>
+
+<div id="commercial-tier" class="pricing-tier-content">
 
 ## Commercial Equipment
 
@@ -137,9 +153,7 @@ Valley Top Repair offers competitive, transparent pricing with no hidden fees. M
   </div>
 </div>
 
----
-
-## Equipment Type Pricing
+</div>
 
 ### 2-Cycle Equipment (Chainsaws, Trimmers, Blowers, Edgers, Hedge Trimmers)
 
@@ -222,19 +236,19 @@ Every repair comes with:
   <div class="row g-0">
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">💰</div>
+        <div class="trust-signal-number"><i class="fas fa-dollar-sign"></i></div>
         <div class="trust-signal-label">Fair Pricing</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🔧</div>
+        <div class="trust-signal-number"><i class="fas fa-wrench"></i></div>
         <div class="trust-signal-label">Professional Service</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">30</div>
+        <div class="trust-signal-number"><i class="fas fa-shield-alt"></i></div>
         <div class="trust-signal-label">30-Day Warranty</div>
       </div>
     </div>

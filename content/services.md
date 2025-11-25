@@ -1,8 +1,9 @@
 +++  
 title = "Services"  
-description = "Services"  
-keywords = ["Equipment","Services"]
-heroSubtitle = "Professional repair and maintenance for all your outdoor power equipment needs"  
+description = "Professional equipment repair and maintenance services for lawn mowers, small engines, and outdoor power equipment. Spring Valley, Ohio - quality repairs you can trust."  
+keywords = ["equipment repair","small engine repair","lawn mower repair","spring valley ohio","power equipment"]
+heroSubtitle = "Professional repair and maintenance for all your outdoor power equipment needs"
+unsafe = true
 +++  
 
 ## Equipment We Service
@@ -11,7 +12,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
 
 <div class="cards-grid">
   <div class="service-card">
-    <div class="service-card-icon">🚜</div>
+    <div class="service-card-icon"><i class="fas fa-tractor"></i></div>
     <h3>Lawn Mowers</h3>
     <ul>
       <li>Push/Self-Propelled</li>
@@ -22,7 +23,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">❄️</div>
+    <div class="service-card-icon"><i class="fas fa-snowflake"></i></div>
     <h3>Snow Equipment</h3>
     <ul>
       <li>Single-Stage Blowers</li>
@@ -33,7 +34,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">🌳</div>
+    <div class="service-card-icon"><i class="fas fa-tree"></i></div>
     <h3>Yard Maintenance</h3>
     <ul>
       <li>String Trimmers</li>
@@ -44,7 +45,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">⛓️</div>
+    <div class="service-card-icon"><i class="fas fa-hammer"></i></div>
     <h3>Power Tools</h3>
     <ul>
       <li>Chainsaws</li>
@@ -55,7 +56,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">🏍️</div>
+    <div class="service-card-icon"><i class="fas fa-motorcycle"></i></div>
     <h3>Vehicles</h3>
     <ul>
       <li>ATVs/UTVs</li>
@@ -66,7 +67,7 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   </div>
 
   <div class="service-card">
-    <div class="service-card-icon">🔧</div>
+    <div class="service-card-icon"><i class="fas fa-wrench"></i></div>
     <h3>Parts & Accessories</h3>
     <ul>
       <li>Replacement Blades</li>
@@ -140,28 +141,34 @@ Valley Top Repair services most 4-cycle and 2-cycle brands of residential and co
   <div class="row g-0">
     <div class="col-md-3">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🇺🇸</div>
+        <div class="trust-signal-number"><i class="fas fa-flag-usa"></i></div>
         <div class="trust-signal-label">Veteran Owned</div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">⏱️</div>
+        <div class="trust-signal-number"><i class="fas fa-clock"></i></div>
         <div class="trust-signal-label">1+ Year Operating</div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">🌟</div>
+        <div class="trust-signal-number"><i class="fas fa-star"></i></div>
         <div class="trust-signal-label">50+ Brands</div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="trust-signal-item">
-        <div class="trust-signal-number">✅</div>
+        <div class="trust-signal-number"><i class="fas fa-check"></i></div>
         <div class="trust-signal-label">100% Dedicated</div>
       </div>
     </div>
   </div>
 </div>
+
+---
+
+## Ready to Get Started?
+
+Learn more about our commitment to quality and see what our customers say about us on [our warranty page](/warranty/). For transparent pricing on our services, visit our [pricing page](/pricing/) or [contact us](/contact/) for a quick quote.
 

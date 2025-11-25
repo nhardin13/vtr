@@ -1,12 +1,15 @@
 <header class="navbar-affixed-top sticky-top">
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#content" class="skip-to-content">{{ i18n "skipToContent" | default "Skip to content" }}</a>
+    
     <nav class="navbar navbar-expand-lg" role="navigation" id="navbar">
         <div class="container">
             <a class="navbar-brand home" href="{{ "/" | relLangURL }}">
                 {{ if default false .Site.Params.disabled_logo }}
                   <h4 class="mb-0">{{ .Site.Params.logo_text }}</h4>
                 {{ else }}
-                  <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Title }} logo" class="d-none d-sm-block" />
-                  <img src="{{ .Site.Params.logo_small | relURL }}" alt="{{ .Title }} logo" class="d-block d-sm-none" />
+                  <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Title }} logo" class="d-none d-sm-block" loading="lazy" decoding="async" />
+                  <img src="{{ .Site.Params.logo_small | relURL }}" alt="{{ .Title }} logo" class="d-block d-sm-none" loading="lazy" decoding="async" />
                 {{ end }}
                 <span class="visually-hidden">{{ .Title }} - {{ i18n "navHome" }}</span>
             </a>
@@ -52,6 +55,11 @@
                   </li>
                   {{ end }}
                   {{ end }}
+                  <li class="nav-item">
+                    <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                      <i class="fas fa-moon"></i>
+                    </button>
+                  </li>
                 </ul>
             </div>
         </div>

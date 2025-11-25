@@ -1,5 +1,7 @@
 +++
-title = "Contact"
+title = "Contact Us"
+description = "Contact Valley Top Repair for equipment repair services in Spring Valley, Ohio. Reach out to our team for fast, reliable repairs of lawn and garden equipment."
+keywords = ["contact","equipment repair","spring valley ohio","repair services"]
 id = "contact"
 type = "contact"
 +++

@@ -21,6 +21,8 @@ $(function () {
   counters()
   demo()
   contactFormAjax()
+  backToTop()
+  smoothScroll()
 })
 
 // Ajax contact
@@ -393,4 +395,219 @@ $(window).resize(function () {
     }, 205)
     windowWidth = newWindowWidth
   }
+})
+
+/* ===================================
+   FORM VALIDATION FEEDBACK
+   =================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all forms with novalidate
+  const forms = document.querySelectorAll('form[novalidate]')
+  
+  forms.forEach(form => {
+    // Show validation feedback on blur (when user leaves field)
+    const inputs = form.querySelectorAll('.form-control, .form-control-textarea')
+    
+    inputs.forEach(input => {
+      // Add validation class when user leaves the field
+      input.addEventListener('blur', function () {
+        // Mark field as touched for validation display
+        this.classList.add('touched')
+        
+        // Check validity
+        if (!this.checkValidity()) {
+          this.classList.add('is-invalid')
+          this.classList.remove('is-valid')
+        } else {
+          this.classList.remove('is-invalid')
+          this.classList.add('is-valid')
+        }
+      })
+      
+      // Update validation state as user types
+      input.addEventListener('input', function () {
+        if (this.classList.contains('touched')) {
+          if (!this.checkValidity()) {
+            this.classList.add('is-invalid')
+            this.classList.remove('is-valid')
+          } else {
+            this.classList.remove('is-invalid')
+            this.classList.add('is-valid')
+          }
+        }
+      })
+    })
+    
+    // Handle form submission
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        // Mark all fields as touched to show errors
+        inputs.forEach(input => {
+          input.classList.add('touched')
+          input.classList.add('is-invalid')
+        })
+      }
+      
+      form.classList.add('was-validated')
+    }, false)
+  })
+})
+
+/* ===================================
+   BACK-TO-TOP BUTTON
+   =================================== */
+function backToTop () {
+  const backToTopBtn = $('#back-to-top')
+  
+  if (!backToTopBtn.length) return
+  
+  // Show/hide button based on scroll position
+  $(window).on('scroll', function () {
+    if ($(this).scrollTop() > 300) {
+      backToTopBtn.fadeIn(300)
+    } else {
+      backToTopBtn.fadeOut(300)
+    }
+  })
+  
+  // Smooth scroll to top
+  backToTopBtn.on('click', function (e) {
+    e.preventDefault()
+    $('html, body').animate({
+      scrollTop: 0
+    }, 800, 'swing')
+    return false
+  })
+}
+
+/* ===================================
+   SMOOTH SCROLL
+   =================================== */
+function smoothScroll () {
+  // Smooth scrolling for anchor links
+  $(document).on('click', 'a[href^="#"]', function (e) {
+    const target = $(this.getAttribute('href'))
+    
+    if (target.length) {
+      e.preventDefault()
+      $('html, body').stop(true, true).animate({
+        scrollTop: target.offset().top - 100
+      }, 800, 'swing')
+    }
+  })
+}
+
+/* ===================================
+   PAGE TRANSITIONS
+   =================================== */
+function handlePageTransitions () {
+  // Listen for internal link clicks (not external or anchors)
+  $(document).on('click', 'a:not([href^="#"]):not([href^="http"]):not([href^="mailto"]):not([href^="tel"]):not([target="_blank"])', function (e) {
+    const href = $(this).attr('href')
+    
+    // Skip if no href or if it's the current page
+    if (!href || href === window.location.pathname) return
+    
+    console.log('Page transition triggered:', href)
+    e.preventDefault()
+    
+    // Add exit animation to content
+    $('#content').addClass('page-exit')
+    
+    // Show skeleton loader
+    showSkeletonLoader()
+    
+    // After animation completes, navigate
+    setTimeout(() => {
+      console.log('Navigating to:', href)
+      window.location.href = href
+    }, 400)
+  })
+}
+
+/* ===================================
+   SKELETON LOADING SCREENS
+   =================================== */
+function showSkeletonLoader () {
+  console.log('Showing skeleton loader')
+  
+  // Create skeleton loader HTML if it doesn't exist
+  if ($('#skeleton-loader').length === 0) {
+    const skeletonHTML = `
+      <div id="skeleton-loader" class="container mt-4">
+        <div class="row">
+          <div class="col-md-9">
+            <!-- Page Heading Skeleton -->
+            <div class="skeleton-heading skeleton"></div>
+            
+            <!-- Breadcrumb Skeleton -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem;">
+              <div class="skeleton" style="width: 60px; height: 20px; border-radius: 3px;"></div>
+              <div class="skeleton" style="width: 50px; height: 20px; border-radius: 3px;"></div>
+            </div>
+            
+            <!-- Content Skeleton -->
+            <div class="skeleton-card">
+              <div class="skeleton-image skeleton"></div>
+              <div class="skeleton-paragraph">
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text short skeleton"></div>
+              </div>
+              <div class="skeleton-paragraph">
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text short skeleton"></div>
+              </div>
+            </div>
+            
+            <div class="skeleton-card">
+              <div class="skeleton-image skeleton"></div>
+              <div class="skeleton-paragraph">
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text short skeleton"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <!-- Sidebar Skeleton -->
+            <div class="skeleton-card">
+              <div class="skeleton-heading skeleton" style="width: 100%;"></div>
+              <div class="skeleton-paragraph">
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text skeleton"></div>
+                <div class="skeleton-text short skeleton"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+    $('body').append(skeletonHTML)
+  }
+  
+  $('body').addClass('loading')
+  $('#skeleton-loader').show()
+  $('#content').fadeOut(250)
+}
+
+function hideSkeletonLoader () {
+  console.log('Hiding skeleton loader')
+  $('body').removeClass('loading')
+  $('#skeleton-loader').hide()
+  $('#content').show().removeClass('page-exit')
+}
+
+// Initialize page transitions on document ready
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('Page transitions initialized')
+  handlePageTransitions()
+  
+  // Hide skeleton loader if it was shown on page load
+  hideSkeletonLoader()
 })
