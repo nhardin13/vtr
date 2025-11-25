@@ -221,13 +221,12 @@
 {{ end }}
 
 <!-- Google Analytics 4 -->
-{{ with (getenv "GOOGLE_ANALYTICS_ID") }}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PMB3P9384Y"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '{{ . }}', {
+  gtag('config', 'G-PMB3P9384Y', {
     'page_path': '{{ $.Permalink }}',
     'page_title': '{{ $title_plain }}',
     'anonymize_ip': true,
@@ -246,7 +245,6 @@
   });
   {{ end }}
 </script>
-{{ end }}
 
 <!-- Heatmap Analytics: Hotjar Integration -->
 {{ with (getenv "HOTJAR_ID") }}
