@@ -1,6 +1,6 @@
 {{ if default true .Site.Params.CarouselHomepage.enable }}
-{{ if isset .Site.Data "carousel" }}
-{{ if gt (len .Site.Data.carousel) 0 }}
+{{ if isset hugo.Data "carousel" }}
+{{ if gt (len hugo.Data.carousel) 0 }}
 <section class="home-carousel">
     <div class="dark-mask"></div>
     <div class="swiper homepage"
@@ -8,16 +8,26 @@
         data-slide-speed="{{ default 2000 .Site.Params.CarouselHomepage.slide_speed }}"
         data-pagination-speed="{{ default 1000 .Site.Params.CarouselHomepage.pagination_speed }}">
         <div class="swiper-wrapper">
-            {{ range sort .Site.Data.carousel "weight" }}
+            {{ range $index, $slide := sort hugo.Data.carousel "weight" }}
+            {{ $imgWidth := 1200 }}
+            {{ $imgHeight := 800 }}
             <div class="swiper-slide">
                 <div class="container h-100">
                     <div class="row align-items-center h-100">
                         <div class="col-sm-5">
-                            <h1>{{ .title | safeHTML }}</h1>
-                            <p>{{ .description | safeHTML }}</p>
+                            <h1>{{ $slide.title | safeHTML }}</h1>
+                            <p>{{ $slide.description | safeHTML }}</p>
                         </div>
                         <div class="col-sm-7 text-center">
-                            <img class="carousel-image" src="{{ .image }}" alt="{{ .title }}" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 60vw">
+                            <img
+                                class="carousel-image{{ if eq $index 0 }} carousel-image-first{{ end }}"
+                                src="{{ $slide.image }}"
+                                alt="{{ $slide.title }}"
+                                width="{{ $imgWidth }}"
+                                height="{{ $imgHeight }}"
+                                loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}"
+                                decoding="async"
+                                sizes="(max-width: 768px) 100vw, 60vw">
                         </div>
                     </div>
                 </div>

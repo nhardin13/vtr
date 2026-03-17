@@ -6,8 +6,8 @@
 <title>{{ $title_plain }}</title>
 <meta name="author" content="{{ .Param "author" }}" />
 {{ $keywords := .Site.Params.defaultKeywords | default (slice "" | first 0) }}
-{{ if isset .Params "tags" }}{{ range .Params.tags }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
-{{ if isset .Params "keywords" }}{{ range .Params.keywords }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+{{ with .Params.tags }}{{ range . }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+{{ with .Params.keywords }}{{ range . }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
 {{ if gt (len $keywords) 0 }}
 <meta name="keywords" content="{{ delimit (uniq $keywords) ", " }}">
 {{ end }}
@@ -33,21 +33,27 @@
 <!-- Custom stylesheet -->
 <link href="{{ "css/custom.css" | relURL }}" rel="stylesheet">
 
+{{ if .IsHome }}
+  {{ with index (sort hugo.Data.carousel "weight") 0 }}
+<link rel="preload" as="image" href="{{ .image | relURL }}">
+  {{ end }}
+{{ end }}
+
 <!-- Inline critical CSS removed after verifying full stylesheet deployment -->
 
 <!-- Favicon and Apple touch icons -->
 <link rel="shortcut icon" href="{{ "img/favicon.ico" | relURL }}" type="image/x-icon" />
-<link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}" />
 
 <!-- RSS feed -->
 <link rel="alternate" href="{{ "/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 
 <!-- Facebook OpenGraph tags -->
 {{ $is_blog := and (eq .Type "blog") (eq .Kind "page") }}
-{{ $has_image :=  isset .Params "banner" }}
+{{ $has_image := false }}
+{{ with .Params.banner }}{{ $has_image = true }}{{ end }}
 {{ $image := cond $has_image .Params.banner (.Site.Params.default_sharing_image | default "img/sharing-default.png") }}
 {{ $is_valid_image := print "static/" $image | fileExists }}
-<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}">
+<meta property="og:locale" content="{{ replace .Site.Language.Locale "-" "_" }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:title" content="{{ $title_plain | truncate 65 }}">
 <meta property="og:type" content="{{ cond $is_blog "article" "website" }}">

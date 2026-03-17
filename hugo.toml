@@ -1,6 +1,6 @@
 baseurl = "https://www.valleytoprepair.com"
 title = "Valley Top Repair"
-languageCode = "en-us"
+locale = "en-us"
 # Site language. Available translations in the theme's `/i18n` directory.
 defaultContentLanguage = "en"
 # Deployment timestamp: 2025-11-24T19:32

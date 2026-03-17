@@ -21,8 +21,8 @@
                     <div class="box-image-text blog">
                         <div class="top">
                             <div class="image" style="overflow:hidden">
-                                {{ if isset .Params "banner" }}
-                                <img src="{{ .Params.banner | relURL }}" class="img-responsive" alt="" loading="lazy" decoding="async" />
+                                {{ with .Params.banner }}
+                                <img src="{{ . | relURL }}" class="img-responsive" alt="" loading="lazy" decoding="async" />
                                 {{ else }}
                                 <img src="{{ "img/placeholder.png" | relURL }}" class="img-responsive" alt="" loading="lazy" decoding="async" />
                                 {{ end }}
@@ -38,8 +38,8 @@
                         <div class="content">
                             <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
                             <p class="author-category">
-			    {{ if isset .Params "authors" }}
-			      {{ i18n "authorBy" }} {{ range $index, $author := .Params.authors }}{{ if $index }}, {{ end }}<a href="{{ (printf "%s/%s" ("authors" | relLangURL) ($author | urlize)) }}">{{ $author }}</a>{{ end }}
+                {{ with .Params.authors }}
+                  {{ i18n "authorBy" }} {{ range $index, $author := . }}{{ if $index }}, {{ end }}<a href="{{ (printf "%s/%s" ("authors" | relLangURL) ($author | urlize)) }}">{{ $author }}</a>{{ end }}
                             {{ end }}
                             {{ if .Params.date }}
                                 {{ $createdAt := .Date.Format .Site.Params.date_format }}

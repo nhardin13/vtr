@@ -21,9 +21,9 @@
         {{ partial "hero-section.html" . }}
 
         <div id="content">
-            {{ if isset .Params "id" }}
+            {{ with .Params.id }}
 
-              {{ partial .Params.id . }}
+              {{ partial . $ }}
 
             {{ else }}
 

@@ -17,8 +17,8 @@
                     <div class="item mb-3">
                         <div class="image-wrapper">
                             <a href="{{ .Permalink }}">
-                              {{ if isset .Params "banner" }}
-                                <img src="{{ .Params.banner | relURL }}" class="img-fluid" alt="{{ .Title }}" loading="lazy" decoding="async" />
+                                                            {{ with .Params.banner }}
+                                                                <img src="{{ . | relURL }}" class="img-fluid" alt="{{ $.Title }}" loading="lazy" decoding="async" />
                                 {{ else }}
                                 <img src="{{ "img/placeholder.png" | relURL }}" class="img-fluid" alt="{{ .Title }}" loading="lazy" decoding="async" />
                               {{ end }}
