@@ -20,6 +20,9 @@
   "devDependencies": {
     "@filipecarneiro/hugo-bootstrap-theme": "^1.0.50"
   },
+  "overrides": {
+    "undici": "7.24.0"
+  },
   "dependencies": {
     "wrangler": "^4.50.0"
   }

@@ -47,13 +47,16 @@ function contactFormAjax () {
 
 /* for demo purpose only - can be deleted */
 function demo () {
+  const allowedThemeNames = ['default', 'blue', 'green', 'marsala', 'pink', 'red', 'turquoise', 'violet']
+
   if ($.cookie('themeCSSpath')) {
     $('link#theme-stylesheet').attr('href', $.cookie('themeCSSpath'))
   }
 
   $('#colour').change(function () {
-    if ($(this).val() !== '') {
-      const themeCSSpath = 'css/style.' + $(this).val() + '.css'
+    const selectedTheme = String($(this).val() || '').trim().toLowerCase()
+    if (allowedThemeNames.indexOf(selectedTheme) !== -1) {
+      const themeCSSpath = 'css/style.' + selectedTheme + '.css'
 
       $('link#theme-stylesheet').attr('href', themeCSSpath)
 
