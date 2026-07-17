@@ -16,16 +16,25 @@
 <!-- jQuery CounterUp Plugin for number animations -->
 <script src="{{ "js/vendor/jquery.counterup.min.js" | relURL }}"></script>
 
+{{ $assetVersion := printf "%d" now.Unix }}
+
 {{ if (getenv "GOOGLE_MAPS_API_KEY") }}
-<script src="{{ "js/gmaps.init.js" | relURL }}"></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps"></script>
+<script>
+window.initGoogleMaps = window.initGoogleMaps || function () {
+  if (typeof map === 'function') {
+    map()
+  }
+}
+</script>
+<script src="{{ "js/gmaps.init.js" | relURL }}?v={{ $assetVersion }}"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps&loading=async"></script>
 {{ end }}
 
 {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {{ end }}
 
-<script src="{{ "js/front.js" | relURL }}"></script>
+<script src="{{ "js/front.js" | relURL }}?v={{ $assetVersion }}"></script>
 
 <!-- Lazy Loading Fade-in Animation -->
 <script>
