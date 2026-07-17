@@ -125,7 +125,7 @@ async function map () {
       ? mapsConfig.mapId.trim()
       : undefined
     const center = { lat, lng }
-    const map = new window.google.maps.Map(mapElement, {
+    const mapOptions = {
       center,
       mapId,
       zoomControl: true,
@@ -139,9 +139,14 @@ async function map () {
       overviewMapControl: false,
       scrollwheel: false,
       draggable: false,
-      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
-      styles
-    })
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP
+    }
+
+    if (!mapId) {
+      mapOptions.styles = styles
+    }
+
+    const map = new window.google.maps.Map(mapElement, mapOptions)
 
     await createMapMarker(map, center, image, direction)
 
