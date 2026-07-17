@@ -51,21 +51,8 @@ async function createMapMarker (map, center, image, direction) {
     }
   }
 
-  // Fallback for environments where AdvancedMarkerElement is unavailable.
-  const marker = new maps.Marker({
-    position: center,
-    map,
-    icon: image,
-    title: direction
-  })
-
-  marker.addListener('click', function () {
-    const url = new URL('https://maps.google.com/')
-    url.searchParams.set('daddr', direction)
-    window.open(url.href, '_blank', 'noopener,noreferrer')
-  })
-
-  return marker
+  console.warn('⚠️ AdvancedMarkerElement unavailable, skipping marker creation')
+  return null
 }
 
 async function map () {
