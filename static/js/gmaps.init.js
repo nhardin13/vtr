@@ -2,8 +2,16 @@ window.initGoogleMaps = function () {
   void map()
 }
 
+function isGoogleMapsReady () {
+  return typeof window.google !== 'undefined' &&
+    window.google.maps &&
+    typeof window.google.maps.Map === 'function' &&
+    window.google.maps.ControlPosition &&
+    window.google.maps.MapTypeId
+}
+
 $(document).ready(function () {
-  if (typeof window.google !== 'undefined' && window.google.maps) {
+  if (isGoogleMapsReady()) {
     void map()
   }
 })
@@ -62,7 +70,7 @@ async function createMapMarker (map, center, image, direction) {
 
 async function map () {
   if ($('#map').length) {
-    if (typeof window.google === 'undefined' || !window.google.maps) {
+    if (!isGoogleMapsReady()) {
       console.warn('⚠️ Google Maps API not available, skipping map initialization')
       return
     }
