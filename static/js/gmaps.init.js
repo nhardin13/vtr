@@ -10,6 +10,20 @@ function isGoogleMapsReady () {
     window.google.maps.MapTypeId
 }
 
+function getGoogleMapsConfig () {
+  const configElement = document.getElementById('google-maps-config')
+  if (!configElement) {
+    return {}
+  }
+
+  try {
+    return JSON.parse(configElement.textContent || '{}')
+  } catch (error) {
+    console.warn('⚠️ Invalid Google Maps config JSON, using defaults')
+    return {}
+  }
+}
+
 $(document).ready(function () {
   if (isGoogleMapsReady()) {
     void map()
@@ -41,11 +55,17 @@ async function createMapMarker (map, center, image, direction) {
         content: markerContent
       })
 
-      marker.addListener('click', function () {
+      const handleMarkerClick = function () {
         const url = new URL('https://maps.google.com/')
         url.searchParams.set('daddr', direction)
         window.open(url.href, '_blank', 'noopener,noreferrer')
-      })
+      }
+
+      if (typeof marker.addEventListener === 'function') {
+        marker.addEventListener('gmp-click', handleMarkerClick)
+      } else if (typeof marker.addListener === 'function') {
+        marker.addListener('gmp-click', handleMarkerClick)
+      }
 
       return marker
     }
@@ -100,9 +120,14 @@ async function map () {
         }
       ]
 
+    const mapsConfig = getGoogleMapsConfig()
+    const mapId = typeof mapsConfig.mapId === 'string' && mapsConfig.mapId.trim()
+      ? mapsConfig.mapId.trim()
+      : undefined
     const center = { lat, lng }
     const map = new window.google.maps.Map(mapElement, {
       center,
+      mapId,
       zoomControl: true,
       zoom: 15,
       zoomControlOptions: {

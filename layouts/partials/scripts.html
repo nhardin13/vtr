@@ -19,6 +19,8 @@
 {{ $assetVersion := printf "%d" now.Unix }}
 
 {{ if (getenv "GOOGLE_MAPS_API_KEY") }}
+{{ $googleMapsMapID := getenv "GOOGLE_MAPS_MAP_ID" }}
+<script id="google-maps-config" type="application/json">{{ dict "mapId" $googleMapsMapID | jsonify }}</script>
 <script>
 window.initGoogleMaps = window.initGoogleMaps || function () {
   if (typeof map === 'function') {
@@ -27,7 +29,7 @@ window.initGoogleMaps = window.initGoogleMaps || function () {
 }
 </script>
 <script src="{{ "js/gmaps.init.js" | relURL }}?v={{ $assetVersion }}"></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps&loading=async&libraries=marker"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps&loading=async&libraries=marker{{ if $googleMapsMapID }}&map_ids={{ $googleMapsMapID }}{{ end }}"></script>
 {{ end }}
 
 {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}
