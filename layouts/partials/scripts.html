@@ -27,7 +27,7 @@ window.initGoogleMaps = window.initGoogleMaps || function () {
 }
 </script>
 <script src="{{ "js/gmaps.init.js" | relURL }}?v={{ $assetVersion }}"></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps&loading=async"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps&loading=async&libraries=marker"></script>
 {{ end }}
 
 {{ if and .Site.Params.enablerecaptchaincontactform .Site.Params.googlerecaptchakey }}

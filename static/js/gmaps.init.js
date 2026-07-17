@@ -1,14 +1,66 @@
 window.initGoogleMaps = function () {
-  map()
+  void map()
 }
 
 $(document).ready(function () {
   if (typeof window.google !== 'undefined' && window.google.maps) {
-    map()
+    void map()
   }
 })
 
-function map () {
+async function createMapMarker (map, center, image, direction) {
+  const maps = window.google.maps
+
+  if (typeof maps.importLibrary === 'function') {
+    const markerLibrary = await maps.importLibrary('marker')
+    if (markerLibrary && markerLibrary.AdvancedMarkerElement) {
+      const markerContent = image
+        ? Object.assign(document.createElement('img'), {
+            src: image,
+            alt: direction || 'Map marker'
+          })
+        : undefined
+
+      if (markerContent) {
+        markerContent.style.width = '32px'
+        markerContent.style.height = '32px'
+      }
+
+      const marker = new markerLibrary.AdvancedMarkerElement({
+        map,
+        position: center,
+        title: direction,
+        content: markerContent
+      })
+
+      marker.addListener('click', function () {
+        const url = new URL('https://maps.google.com/')
+        url.searchParams.set('daddr', direction)
+        window.open(url.href, '_blank', 'noopener,noreferrer')
+      })
+
+      return marker
+    }
+  }
+
+  // Fallback for environments where AdvancedMarkerElement is unavailable.
+  const marker = new maps.Marker({
+    position: center,
+    map,
+    icon: image,
+    title: direction
+  })
+
+  marker.addListener('click', function () {
+    const url = new URL('https://maps.google.com/')
+    url.searchParams.set('daddr', direction)
+    window.open(url.href, '_blank', 'noopener,noreferrer')
+  })
+
+  return marker
+}
+
+async function map () {
   if ($('#map').length) {
     if (typeof window.google === 'undefined' || !window.google.maps) {
       console.warn('⚠️ Google Maps API not available, skipping map initialization')
@@ -71,18 +123,7 @@ function map () {
       styles
     })
 
-    const marker = new window.google.maps.Marker({
-      position: center,
-      map,
-      icon: image,
-      title: direction
-    })
-
-    marker.addListener('click', function () {
-        const url = new URL('https://maps.google.com/')
-        url.searchParams.set('daddr', direction)
-        window.open(url.href, '_blank', 'noopener,noreferrer')
-    })
+    await createMapMarker(map, center, image, direction)
 
     mapElement.dataset.initialized = 'true'
   }
