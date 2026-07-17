@@ -577,7 +577,14 @@ function backToTop () {
 function smoothScroll () {
   // Smooth scrolling for anchor links
   $(document).on('click', 'a[href^="#"]', function (e) {
-    const target = $(this.getAttribute('href'))
+    const href = (this.getAttribute('href') || '').trim()
+
+    // Skip placeholder hash links ("#") and empty fragments to avoid invalid jQuery selectors.
+    if (href.length <= 1 || href === '#') {
+      return
+    }
+
+    const target = $(href)
     
     if (target.length) {
       e.preventDefault()
