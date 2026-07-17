@@ -4,3 +4,4 @@ node_modules
 vtr.code-workspace
 .env
 .wrangler
+bin/
