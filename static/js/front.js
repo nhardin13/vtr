@@ -259,6 +259,38 @@ function fullScreenContainer () {
   })
 }
 
+function parseSafeUrl (value) {
+  if (!value) return null
+
+  try {
+    return new URL(value, window.location.origin)
+  } catch {
+    return null
+  }
+}
+
+function navigateToSameOrigin (value) {
+  const url = parseSafeUrl(value)
+
+  if (!url || url.origin !== window.location.origin) {
+    return false
+  }
+
+  window.location.href = url.pathname + url.search + url.hash
+  return true
+}
+
+function openTrustedExternalUrl (value) {
+  const url = parseSafeUrl(value)
+
+  if (!url || (url.protocol !== 'https:' && url.protocol !== 'http:')) {
+    return false
+  }
+
+  window.open(url.href, '_blank', 'noopener,noreferrer')
+  return true
+}
+
 function utils () {
   /* tooltips */
   $('[data-toggle="tooltip"]').tooltip()
@@ -271,13 +303,13 @@ function utils () {
 
   /* click on the box activates the link in it */
   $('.box.clickable').on('click', function () {
-    window.location = $(this).find('a').attr('href')
+    navigateToSameOrigin($(this).find('a').attr('href'))
   })
 
   /* external links in new window */
   $('.external').on('click', function (e) {
     e.preventDefault()
-    window.open($(this).attr('href'))
+    openTrustedExternalUrl($(this).attr('href'))
   })
 
   /* animated scrolling */
@@ -400,10 +432,63 @@ $(window).resize(function () {
   }
 })
 
+function initializeSwiperAndScrollAnimations () {
+  if (typeof Swiper === 'undefined') {
+    console.error('Swiper library not loaded')
+    return
+  }
+
+  if (document.querySelector('.homepage')) {
+    try {
+      new Swiper('.homepage', {
+        loop: true,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        speed: 1000
+      })
+    } catch (error) {
+      console.error('Swiper initialization error:', error)
+    }
+  }
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, index) {
+      if (entry.isIntersecting) {
+        setTimeout(function () {
+          entry.target.classList.add('visible')
+        }, index * 100)
+        observer.unobserve(entry.target)
+      }
+    })
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  })
+
+  document.querySelectorAll('.box-simple, .bar').forEach(function (el) {
+    if (!el.classList.contains('fade-in-up')) {
+      el.classList.add('fade-in-up')
+    }
+    observer.observe(el)
+  })
+}
+
 /* ===================================
    FORM VALIDATION FEEDBACK
    =================================== */
 document.addEventListener('DOMContentLoaded', function () {
+  initializeSwiperAndScrollAnimations()
+
   // Get all forms with novalidate
   const forms = document.querySelectorAll('form[novalidate]')
   
@@ -526,7 +611,7 @@ function handlePageTransitions () {
     // After animation completes, navigate
     setTimeout(() => {
       console.log('Navigating to:', href)
-      window.location.href = href
+      navigateToSameOrigin(href)
     }, 400)
   })
 }

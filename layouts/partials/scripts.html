@@ -17,25 +17,7 @@
 <script src="{{ "js/vendor/jquery.counterup.min.js" | relURL }}"></script>
 
 {{ if (getenv "GOOGLE_MAPS_API_KEY") }}
-<script>
-  // Initialize Google Maps callback when API loads
-  window.initGoogleMaps = function() {
-    console.log('✅ Google Maps API loaded');
-    if (typeof gmap === 'undefined') {
-      console.log('Loading gmaps...');
-      var gmapsScript = document.createElement('script');
-      gmapsScript.src = "{{ "js/hpneo.gmaps.js" | relURL }}";
-      document.head.appendChild(gmapsScript);
-      
-      // Then load gmaps.init.js
-      setTimeout(function() {
-        var gMapsInitScript = document.createElement('script');
-        gMapsInitScript.src = "{{ "js/gmaps.init.js" | relURL }}";
-        document.head.appendChild(gMapsInitScript);
-      }, 500);
-    }
-  };
-</script>
+<script src="{{ "js/gmaps.init.js" | relURL }}"></script>
 <script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv "GOOGLE_MAPS_API_KEY" }}&v=quarterly&callback=initGoogleMaps"></script>
 {{ end }}
 
@@ -44,87 +26,6 @@
 {{ end }}
 
 <script src="{{ "js/front.js" | relURL }}"></script>
-
-<!-- Swiper initialization and scroll animations -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOMContentLoaded fired');
-  
-  // Debug: Check if Swiper is available
-  if (typeof Swiper === 'undefined') {
-    console.error('❌ Swiper library not loaded!');
-    return;
-  }
-  console.log('✅ Swiper library loaded:', Swiper);
-  
-  // Check if element exists (only on pages with carousel)
-  const swiperEl = document.querySelector('.homepage');
-  if (!swiperEl) {
-    // Element not found - this is normal on pages without a carousel
-    return;
-  }
-  
-  try {
-    // Swiper Carousel
-    const homeSwiper = new Swiper('.homepage', {
-      loop: true,
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      speed: 1000,
-    });
-    console.log('✅ Swiper initialized successfully:', homeSwiper);
-  } catch (error) {
-    console.error('❌ Swiper initialization error:', error);
-  }
-
-  // Scroll Animation for Cards
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, index) {
-      if (entry.isIntersecting) {
-        setTimeout(function() {
-          entry.target.classList.add('visible');
-        }, index * 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe all elements with fade-in-up animation
-  document.querySelectorAll('.box-simple, .bar').forEach(function(el) {
-    if (!el.classList.contains('fade-in-up')) {
-      el.classList.add('fade-in-up');
-    }
-    observer.observe(el);
-  });
-
-  // Form validation
-  const forms = document.querySelectorAll('form[novalidate]');
-  forms.forEach(function(form) {
-    form.addEventListener('submit', function(event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  });
-});
-</script>
 
 <!-- Lazy Loading Fade-in Animation -->
 <script>

@@ -228,40 +228,10 @@
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMB3P9384Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PMB3P9384Y', {
-    'page_path': '{{ $.Permalink }}',
-    'page_title': '{{ $title_plain }}',
-    'anonymize_ip': true,
-    'allow_google_signals': true,
-    'allow_ad_personalization_signals': false
-  });
-  
-  // Track custom events for service pages
-  {{ if and $.File (eq $.File.LogicalName "services.md") }}
-  gtag('event', 'view_item', {
-    'items': [
-      {'item_id': 'lawn_mowers', 'item_name': 'Lawn Mower Repair'},
-      {'item_id': 'small_engines', 'item_name': 'Small Engine Repair'},
-      {'item_id': 'snow_equipment', 'item_name': 'Snow Equipment Repair'}
-    ]
-  });
-  {{ end }}
-</script>
+<script id="analytics-config" type="application/json">{"measurementId":"G-PMB3P9384Y","pagePath":{{ $.Permalink | jsonify }},"pageTitle":{{ $title_plain | jsonify }},"trackServicesPage":{{ if and $.File (eq $.File.LogicalName "services.md") }}true{{ else }}false{{ end }}}</script>
 
 <!-- Heatmap Analytics: Hotjar Integration -->
 {{ with (getenv "HOTJAR_ID") }}
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:{{ . }},hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-',{{ . }},'.js?sv=');
-</script>
+<script id="hotjar-config" type="application/json">{"id":{{ . }}}</script>
 {{ end }}
+<script src="{{ "js/site-integrations.js" | relURL }}"></script>

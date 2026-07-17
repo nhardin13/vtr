@@ -1,34 +1,34 @@
-/* global GMaps: true */
+window.initGoogleMaps = function () {
+  map()
+}
 
 $(document).ready(function () {
-  // Wait for Google Maps API to load
-  if (typeof window.google === 'undefined' || !window.google.maps) {
-    // Wait for Google Maps to load
-    window.addEventListener('load', function () {
-      map()
-    })
-  } else {
-    // Google Maps already loaded, initialize map
+  if (typeof window.google !== 'undefined' && window.google.maps) {
     map()
   }
 })
 
 function map () {
   if ($('#map').length) {
-    // Check if Google Maps and GMaps are loaded
     if (typeof window.google === 'undefined' || !window.google.maps) {
       console.warn('⚠️ Google Maps API not available, skipping map initialization')
       return
     }
-    if (typeof GMaps === 'undefined') {
-      console.warn('⚠️ GMaps library not loaded, skipping map initialization')
+
+    if (document.getElementById('map').dataset.initialized === 'true') {
       return
     }
     
-    const lat = $('#gmap-lat').val()
-    const lng = $('#gmap-lng').val()
+    const lat = Number($('#gmap-lat').val())
+    const lng = Number($('#gmap-lng').val())
     const direction = $('#gmap-dir').val()
     const image = $('#gmap-marker').val()
+    const mapElement = document.getElementById('map')
+
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+      console.warn('⚠️ Invalid map coordinates, skipping map initialization')
+      return
+    }
 
     const styles =
       [
@@ -53,14 +53,13 @@ function map () {
         }
       ]
 
-    const map = new GMaps({
-      el: '#map',
-      lat,
-      lng,
+    const center = { lat, lng }
+    const map = new window.google.maps.Map(mapElement, {
+      center,
       zoomControl: true,
-      zoomControlOpt: {
-        style: 'SMALL',
-        position: 'TOP_LEFT'
+      zoom: 15,
+      zoomControlOptions: {
+        position: window.google.maps.ControlPosition.TOP_LEFT
       },
       panControl: false,
       streetViewControl: false,
@@ -68,23 +67,23 @@ function map () {
       overviewMapControl: false,
       scrollwheel: false,
       draggable: false,
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       styles
     })
 
-    map.addMarker({
-      lat,
-      lng,
+    const marker = new window.google.maps.Marker({
+      position: center,
+      map,
       icon: image,
-      click: function (e) {
-        // when we get an address with spaces ...
-        const url = 'https://maps.google.com?daddr=' + direction.split('match').join('replace')
-        window.open(url, '_blank')
-      },
       title: direction
-      /* ,
-      infoWindow: {
-      content: '<p>HTML Content</p>'
-      } */
     })
+
+    marker.addListener('click', function () {
+        const url = new URL('https://maps.google.com/')
+        url.searchParams.set('daddr', direction)
+        window.open(url.href, '_blank', 'noopener,noreferrer')
+    })
+
+    mapElement.dataset.initialized = 'true'
   }
 }
