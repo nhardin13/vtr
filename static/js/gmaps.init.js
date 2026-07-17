@@ -17,7 +17,14 @@ function getGoogleMapsConfig () {
   }
 
   try {
-    return JSON.parse(configElement.textContent || '{}')
+    const parsed = JSON.parse(configElement.textContent || '{}')
+
+    // Some template contexts can serialize JSON as a JSON string. Parse twice when needed.
+    if (typeof parsed === 'string') {
+      return JSON.parse(parsed)
+    }
+
+    return parsed
   } catch (error) {
     console.warn('⚠️ Invalid Google Maps config JSON, using defaults')
     return {}
